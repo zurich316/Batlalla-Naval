@@ -1,0 +1,4 @@
+rspec --init
+ruby app.rb
+spec
+gem install  sinatra
