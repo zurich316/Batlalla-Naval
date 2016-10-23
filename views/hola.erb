@@ -1,2 +1,19 @@
 <h1>Hola Mundo</h1>
+ <%= @var2 %>
+ <br>
+<% @var2.each do |elem| %>
+  <tr>
+    <td>
+    <% elem.each do |e| %>
+	  <tr>
+	    <td>
+	      <%= e %>
+	      
+	    </td>
+	  </tr>
+	<% end %>
 
+      <br>
+    </td>
+  </tr>
+<% end %>

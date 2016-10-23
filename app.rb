@@ -1,5 +1,7 @@
 require 'sinatra'
 
 get '/' do
-  erb :hola
+	@a= ['a','b','c']
+	@var2= [["b", 1, 2 ,3], ["a", 1, 2 ,3], ["a", 1, 2 ,3]]
+	erb :hola
 end
