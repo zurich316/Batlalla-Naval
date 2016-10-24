@@ -1,5 +1,8 @@
 class	table
-	private tablero = Array.new(3){Array.new(3)}
-	
-	
+
+	def atack(row,colum,tab)
+		tab[row][colum]="A"
+		return tab
+	end
+		
 end

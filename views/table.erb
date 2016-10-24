@@ -1,0 +1,16 @@
+<h1>Hola Mundo</h1>
+ <%= @valor1 %>
+ <br>
+ <%= @valor2 %>
+ <br>
+ <%= @valor3 %>
+ <br>
+
+<form method='post' action="/table">
+	<label>Colum: </label>
+	<input type="number" name="colum" min="1" max="5">
+	<label>Row: </label>
+	<input type="number" name="row" min="1" max="5">
+	<input type="hidden" name="tb" value="<%= @tab %>" />
+	<input type="submit" value ="table">		
+</form>
