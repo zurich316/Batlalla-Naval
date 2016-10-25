@@ -5,12 +5,20 @@
  <br>
  <%= @valor3 %>
  <br>
+ <% @valor3.each do |elem| %>   
+	  <tr>
+	  
+	    <td><%= elem %></td>
+	 
+	  </tr>	
+<% end %>
+</table>
 
 <form method='post' action="/table">
 	<label>Colum: </label>
 	<input type="number" name="colum" min="1" max="5">
 	<label>Row: </label>
 	<input type="number" name="row" min="1" max="5">
-	<input type="hidden" name="tb" value="<%= @tab %>" />
+	<input type="hidden" name="tb" value="<%= @valor3 %>" />
 	<input type="submit" value ="table">		
 </form>

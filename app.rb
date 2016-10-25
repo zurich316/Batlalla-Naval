@@ -1,10 +1,9 @@
 require 'sinatra'
+require_relative "lib/table.rb"
 
 get '/' do
-	@a="Cadena"
-	@var2= [["b", "b", "b" ,"b"], ["b", "b", "b" ,"b"], ["b", "b", "b" ,"b"]]
-	@tab=Array.new(4){Array.new(4){'O'}}
-	@tab_array=@tab.join(',')
+	@matriz = Table.new
+	@matriz = @matriz.generarMatriz(10)
 	erb :main
 end
 

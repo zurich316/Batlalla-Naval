@@ -1,8 +1,8 @@
 <h1>Hola Mundo</h1>
- <%= @tab_array %>
+ <%= @matriz %>
  <br>
 <table border="1" tyle="width:100%">
-<% @tab.each do |elem| %>   
+<% @matriz.each do |elem| %>   
 	  <tr>
 	  	<% elem.each do |e| %>
 	    <td><%= e %></td>
@@ -16,6 +16,6 @@
 	<input type="number" name="colum" min="1" max="5">
 	<label>Row: </label>
 	<input type="number" name="row" min="1" max="5">
-	<input type="hidden" name="tab" value="<%= @tab_array %>" />
+	<input type="hidden" name="tb" value="<%= @matriz %>" />
 	<input type="submit" value ="generar">		
 </form>
