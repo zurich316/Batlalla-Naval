@@ -1,24 +1,17 @@
-<h1>Hola Mundo</h1>
+<h1>Batalla Naval</h1>
  <%= @valor1 %>
  <br>
  <%= @valor2 %>
+ <br> 
  <br>
- <%= @valor3 %>
- <br>
- <% @valor3.each do |elem| %>   
-	  <tr>
-	  
-	    <td><%= elem %></td>
-	 
-	  </tr>	
-<% end %>
-</table>
 
+</table>
+</br>
 <form method='post' action="/table">
-	<label>Colum: </label>
-	<input type="number" name="colum" min="1" max="5">
-	<label>Row: </label>
-	<input type="number" name="row" min="1" max="5">
+	<label>Columna: </label>
+	<input type="number" name="colum" min="1" max="10">
+	<label>Fila: </label>
+	<input type="number" name="row" min="1" max="10">
 	<input type="hidden" name="tb" value="<%= @valor3 %>" />
-	<input type="submit" value ="table">		
+	<input type="submit" value ="table">
 </form>
