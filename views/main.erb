@@ -1,20 +1,3 @@
-<h1>Batalla Naval</h1>
+<h1>Batalla Naval </h1>
 
-<table border="1" tyle="width:100%">
-<% @matriz.each do |elem| %>
-	  <tr>
-	  	<% elem.each do |e| %>
-	    <td><%= e %></td>
-	    <% end %>
-	  </tr>
-<% end %>
-</table>
-</br>
-<form method='post' action="/table">
-	<label>Columna: </label>
-	<input type="number" name="colum" min="1" max="10">
-	<label>Fila: </label>
-	<input type="number" name="row" min="1" max="10">
-	<input type="hidden" name="tb" value="<%= @matriz %>" />
-	<input type="submit" value ="generar">
-</form>
+<a href="/table">Empezar</a>

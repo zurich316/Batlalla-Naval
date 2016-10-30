@@ -1,17 +1,28 @@
 <h1>Batalla Naval</h1>
- <%= @valor1 %>
- <br>
- <%= @valor2 %>
- <br> 
- <br>
+ <% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
+<table border="1" tyle="width:100%" >
 
+ 	<tr>
+	  	<% [*1..10].each do |e| %>
+	    <td><B><%= e %></B></td>
+	    <% end %>
+	  </tr>
+	 
+	<% @tb.each do |elem| %>
+	  <tr>  		  
+	  	<% elem.each do |e| %>
+	    <td><%= e %></td>
+	    <% end %>    
+	  </tr>
+<% end %>
 </table>
-</br>
 <form method='post' action="/table">
 	<label>Columna: </label>
 	<input type="number" name="colum" min="1" max="10">
 	<label>Fila: </label>
 	<input type="number" name="row" min="1" max="10">
-	<input type="hidden" name="tb" value="<%= @valor3 %>" />
+	<br>
+	<input type="radio" name="dir" value="v" checked> Vertical<br>
+    <input type="radio" name="dir" value="h"> Horizontal<br>
 	<input type="submit" value ="table">
 </form>

@@ -1,17 +1,26 @@
 require 'sinatra'
 require_relative "lib/table.rb"
 
-get '/' do
-	@matriz = Table.new
-	@matriz = @matriz.generarMatriz(10)
-	erb :main
-end
+  game =  Table.new(10)
+  set :game, game
 
-post '/table' do
-  @valor1 = params[:row]
-  @valor2 = params[:colum]
-  @valor3 = params[:tb]
-  #@valor3[@valor1][@valor2]="X"
+  get '/' do
+    	erb :main
+  end
 
-  erb :table
-end
+  get '/table' do
+    @tb = game.getMatriz()
+    erb :table
+  end
+
+
+  post '/table' do
+    @row = params[:row].to_i
+    @colum = params[:colum].to_i
+    @dir = params[:dir]
+    game.posicionarBarco(2,@dir,@row-1,@colum-1)
+    @tb = game.getMatriz()
+    @@F = 0
+    erb :table
+  end
+

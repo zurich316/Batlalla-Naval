@@ -1,3 +1,4 @@
+=begin
 require_relative '../spec_helper.rb'
 require_relative '../../app/models/Tablero.rb'
 require_relative '../../app/models/Barco.rb'
@@ -63,3 +64,4 @@ describe 'Disparo' do
 			expect(@tablero2.dispararEn("(4:1)")).to eq "water"
 		end
 end
+=end
