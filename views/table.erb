@@ -1,28 +1,88 @@
-<h1>Batalla Naval</h1>
- <% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
-<table border="1" tyle="width:100%" >
 
- 	<tr>
-	  	<% [*1..10].each do |e| %>
-	    <td><B><%= e %></B></td>
-	    <% end %>
-	  </tr>
-	 
-	<% @tb.each do |elem| %>
-	  <tr>  		  
-	  	<% elem.each do |e| %>
-	    <td><%= e %></td>
-	    <% end %>    
-	  </tr>
-<% end %>
-</table>
-<form method='post' action="/table">
-	<label>Columna: </label>
-	<input type="number" name="colum" min="1" max="10">
-	<label>Fila: </label>
-	<input type="number" name="row" min="1" max="10">
-	<br>
-	<input type="radio" name="dir" value="v" checked> Vertical<br>
-    <input type="radio" name="dir" value="h"> Horizontal<br>
-	<input type="submit" value ="table">
-</form>
+<html>
+<head>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<script src="semantic/dist/components/dropdown.min.js"></script>
+	<script src="semantic/examples/assets/library/jquery.min.js"></script>
+	<script src="semantic/dist/semantic.min.js"></script>
+	<link rel="stylesheet" href="Semantic/style.css">
+	<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css" media="screen" title="no title" charset="utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+	<title>Batalla Naval</title>
+
+<head>
+<body>
+	
+	<div class="ui basic padded segment">
+		<h1 class="ui blue centered  header">Batalla Naval</h1>
+	</div>
+
+	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
+
+	<div class="ui grid">	  
+
+  		<div class="eight wide column">
+  			<h3 class="ui teal centered header" style="margin-right:20%;">Tus barcos</h1>
+  			<table class="ui right floated celled blue table" style="width:80%; margin-left:20px;">
+			 	<thead>
+			 		<tr>
+					  	<% [*1..10].each do |e| %>
+					    <th class=" blue center aligned "><B><%= e %></B></th>
+					    <% end %>
+					</tr>
+				</thead>
+				<tbody>
+				<% @tb.each do |elem| %>
+				    <tr>  		  
+				  		<% elem.each do |e| %>
+				    	<td class="center aligned"><%= e %></td>
+				    	<% end %>    
+				    </tr>
+				<% end %>
+				<tbody>
+			</table>
+
+	  	</div>
+  		<div class="eight wide column">
+  			<h3 class="ui red centered header" style="margin-right:20%;">Posiciones atacadas</h1>
+  			<table class="ui right floated celled red table" style="width:80%; margin-left:20px;">
+			 	<thead>
+			 		<tr>
+					  	<% [*1..10].each do |e| %>
+					    <th class=" blue center aligned "><B><%= e %></B></th>
+					    <% end %>
+					</tr>
+				</thead>
+				<tbody>
+				<% @tb.each do |elem| %>
+				    <tr>  		  
+				  		<% elem.each do |e| %>
+				    	<td class="center aligned">0</td>
+				    	<% end %>    
+				    </tr>
+				<% end %>
+				<tbody>
+			</table>
+  		</div>
+	</div>
+</br>		
+
+	<form class="ui form" method='post' action="/table">
+		<div class="five fields">
+			<div class="field" style="margin-left:20px;">
+				<label>Columna: </label>
+				<input type="number" name="colum" min="1" max="10">
+			</div>
+			<div class="field">
+				<label>Fila: </label>
+				<input type="number" name="row" min="1" max="10">
+				<input type="hidden" name="tb" value="<%= @matriz %>" />
+			</div>
+		</div>
+		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:17%;">
+	</form>
+
+</body>
+</html>
