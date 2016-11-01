@@ -31,9 +31,9 @@
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
 
-  		<div class="eight wide column">
-  			<h3 class="ui teal centered header" style="margin-right:20%;">Tus Barcos</h1>
-  			<table class="ui right floated celled definition blue table" style="width:80%; margin-left:20px; table-layout: fixed;">
+  		<div class="sixteen wide column">
+  			<h3 class="ui teal centered header">Tus Barcos</h1>
+  			<table class="ui  celled definition blue table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
 			 			<th></th>
@@ -48,8 +48,8 @@
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= e == 'B' ? "<i class='large black ship icon'></i>" : "<i class='large blue theme icon'></i>
-				    	" %></td>
+				    	<td class="center aligned"><%= e == 'B' ? "<i class='large black ship icon'></i>" : (e == 'U' ? "<i class='large black ship icon'></i>" : "<i class='large blue theme icon'></i>
+				    	") %></td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
@@ -58,37 +58,13 @@
 			</table>
 
 	  	</div>
-  		<div class="eight wide column">
-  			<h3 class="ui red centered header" style="margin-right:20%;">Posiciones Atacadas</h1>
-  			<table class="ui right floated celled definition red table" style="width:80%; margin-left:20px; table-layout: fixed;">
-			 	<thead>
-			 		<tr>
-			 			<th></th>
-					  	<% [*1..10].each do |e| %>
-					    <th class=" blue center aligned "><B><%= e %></B></th>
-					    <% end %>
-					</tr>
-				</thead>
-				<tbody>
-				<% @tb.each do |elem| %>
-				    <tr>  		  
-				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
-				    	<% nroletra += 1 %>
-				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= "<i class='large blue theme icon'></i>" %></td>
-				    	<% end %>    
-				    </tr>
-				<% end %>
-				<% nroletra = 0 %>
-				<tbody>
-			</table>
-  		</div>
+  		
 	</div>
 </br>		
 
 	<form class="ui form" method='post' action="/table">
 		<div class="five fields">
-			<div class="field" style="margin-left:20px;">
+			<div class="field" style="margin-left:30%;">
 				<label>Fila: </label>
 				<select name="row" >
 				  <% [*'A'..'J'].each do |row| %>
@@ -105,6 +81,8 @@
 				</select>
 			</div>
 		</div>
+
+		<!--
 		<div class="ten fields">
 			<div class="field" style="margin-left:210px;">
 				<div class="ui radio checkbox">
@@ -119,9 +97,9 @@
 			    </div>
 			</div>
 		</div>
-		
+		-->
     	
-		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:17%;">
+		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:47%;">
 	</form>
 
 
