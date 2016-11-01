@@ -21,7 +21,7 @@
 	</div>
 
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
-	<% nroletra = 1 %>
+	<% nroletra = 0 %>
 	<div class="ui grid">	  
 
   		<div class="eight wide column">
@@ -38,14 +38,14 @@
 				<tbody>	
 				<% @tb.each do |elem| %>
 				    <tr>
-				    	<td class="center aligned"><%= nroletra %></td> 	  
+				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= e == 1 ? "<i class='ship icon'></i>" : "0" %></td>
+				    	<td class="center aligned"><%= e == 'B' ? "<i class='ship icon'></i>" : "0" %></td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
-				<% nroletra = 1 %>
+				<% nroletra = 0 %>
 				<tbody>
 			</table>
 
@@ -64,14 +64,14 @@
 				<tbody>
 				<% @tb.each do |elem| %>
 				    <tr>  		  
-				    	<td class="center aligned"><%= nroletra %></td> 	  
+				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
 				    	<td class="center aligned">0</td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
-				<% nroletra = 1 %>
+				<% nroletra = 0 %>
 				<tbody>
 			</table>
   		</div>
