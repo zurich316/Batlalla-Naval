@@ -30,6 +30,15 @@ class	Table
 		return abc.index(fila)+1
 	end	
 
+	#verificar
+	def verificarsisepuedeponerbarcos (row,colum)
+		if (@matriz[row][colum] == "B")
+		   return false 
+		else
+		   return true		
+		end
+	end
+
 	def asegurarBarcoEnmatriz(tam,dir,row,colum)
 		tam=tam-1
 		row = devolverFila(row)-1

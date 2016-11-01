@@ -105,7 +105,11 @@ describe Table do
 		resultado.should  == false
 	end
 
-	
-
+	it "Verificar posicionar un barco en posicion sobre otro barco"	do
+	    @tb.cleanMatriz()
+		@tb.posicionarBarco(3,"v",'B',3)
+		resultado = @tb.verificarsisepuedeponerbarcos(3,3) 
+		resultado.should == true
+	end
 
 end
