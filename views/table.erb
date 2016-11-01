@@ -14,6 +14,7 @@
 
 <head>
 <body>
+
 	
 	<div class="ui basic padded segment">
 		<h1 class="ui blue centered  header">Batalla Naval</h1>
@@ -80,19 +81,26 @@
 	<form class="ui form" method='post' action="/table">
 		<div class="five fields">
 			<div class="field" style="margin-left:20px;">
-				<label>Columna: </label>
-				<input type="number" name="colum" min="1" max="10">
+				<label>Fila: </label>
+				<select name="row" >
+				  <% [*'A'..'J'].each do |row| %>
+				    <option value=<%= row %>><%= row %></option>
+				  <% end %>
+				</select>
 			</div>
 			<div class="field">
-				<label>Fila: </label>
-				<input type="number" name="row" min="1" max="10">
-				<input type="hidden" name="tb" value="<%= @matriz %>" />
+				<label>Columna: </label>
+				<select name="colum" >
+					  <% [*1..10].each do |column| %>
+					    <option value=<%= column %>><%= column %></option>
+					  <% end %>
+				</select>
 			</div>
 		</div>
 		<div class="ten fields">
 			<div class="field" style="margin-left:210px;">
 				<div class="ui radio checkbox">
-			        <input type="radio" name="dir" value="v">
+			        <input type="radio" name="dir" value="v" checked>
 			        <label>Vertical</label>
 			    </div>
 			</div>
@@ -107,6 +115,13 @@
     	
 		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:17%;">
 	</form>
+
+<script>
+	 var $select = $(".1-10");
+	    for (i=1;i<=100;i++){
+	        $select.append($('<option></option>').val(i).html(i))
+	    }
+</script>
 
 </body>
 </html>
