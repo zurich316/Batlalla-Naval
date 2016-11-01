@@ -18,7 +18,7 @@ require_relative "lib/table.rb"
     @row = params[:row]
     @colum = params[:colum].to_i
     @dir = params[:dir]
-    game.posicionarBarco(2,@dir,@row,@colum)
+    @verificar = game.posicionarBarco(2,@dir,@row,@colum)
     @tb = game.getMatriz()
     erb :table
   end

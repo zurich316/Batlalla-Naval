@@ -10,6 +10,11 @@ describe Table do
 		resultado.should  == 10
 	end
 
+	it "Deberia devolver el tamaño que se le dio a la matriz" do 
+		resultado = @tb.getTam()
+		resultado.should  == 10
+	end
+
 	it "Devuelve un array del array y debe ser igual a en 10" do
 		resultado = @tb.getMatriz()
 		resultado = resultado[0].count
@@ -83,6 +88,21 @@ describe Table do
 		resultado = @tb.getMatriz()
 		resultado = resultado.map {|row| row[2]}.drop(1).take(3).join(',')
 		resultado.should  == "B,B,B"		
+	end
+
+	it "Debe asegurar que el barco no se salga de la matriz" do
+		resultado = @tb.asegurarBarcoEnmatriz(1,'h','J',10)
+		resultado.should  == true
+		resultado = @tb.asegurarBarcoEnmatriz(2,'v','J',6)
+		resultado.should  == false
+		resultado = @tb.asegurarBarcoEnmatriz(10,'v','A',1)
+		resultado.should  == true
+		resultado = @tb.asegurarBarcoEnmatriz(10,'h','A',1)
+		resultado.should  == true
+		resultado = @tb.asegurarBarcoEnmatriz(11,'v','A',1)
+		resultado.should  == false
+		resultado = @tb.asegurarBarcoEnmatriz(11,'h','A',1)
+		resultado.should  == false
 	end
 
 	

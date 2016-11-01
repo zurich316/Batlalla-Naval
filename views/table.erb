@@ -19,7 +19,9 @@
 	<div class="ui basic padded segment">
 		<h1 class="ui blue centered  header">Batalla Naval</h1>
 	</div>
-
+	<%if @verificar==false%>
+		<B>Error al ingresar barco, vuelve a intentar</B>
+	<%end%>
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
@@ -116,12 +118,7 @@
 		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:17%;">
 	</form>
 
-<script>
-	 var $select = $(".1-10");
-	    for (i=1;i<=100;i++){
-	        $select.append($('<option></option>').val(i).html(i))
-	    }
-</script>
+
 
 </body>
 </html>
