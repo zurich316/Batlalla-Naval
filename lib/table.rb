@@ -82,5 +82,16 @@ class	Table
 		
 	end
 
+	def hayBarcosSinUndir()
+		@matriz.each do |chr|
+			res = chr.index("B")
+			if res != nil
+				return true
+			end 
+		end
+		return false
+	end
+
+
 		
 end

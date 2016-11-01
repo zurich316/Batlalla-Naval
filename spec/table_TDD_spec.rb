@@ -112,4 +112,15 @@ describe Table do
 		resultado.should == true
 	end
 
+	it "Deberia retornar false si no hay mas barcos sin atacar" do
+		@tb.cleanMatriz()
+		expect(@tb.hayBarcosSinUndir()).to match false		
+	end
+
+	it "Deberia retornar true si hay mas barcos para atacar" do
+		@tb.cleanMatriz()
+		@tb.posicionarBarco(1,"h","E",9)
+		expect(@tb.hayBarcosSinUndir()).to match true		
+	end
+
 end
