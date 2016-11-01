@@ -1,7 +1,7 @@
 class	Table 
    	def initialize(tam)  
 	   @tam = tam
-	   @matriz = Array.new(tam){Array.new(tam){'-'}}    
+	   @matriz = Array.new(tam){Array.new(tam){'A'}}    
   	end 
 
   	def copyMat(mat)
@@ -22,7 +22,7 @@ class	Table
 	end
 
 	def cleanMatriz()
-		return @matriz = Array.new(@tam){Array.new(@tam){'-'}}    
+		return @matriz = Array.new(@tam){Array.new(@tam){'A'}}    
 	end
 
 	def devolverFila(fila)
