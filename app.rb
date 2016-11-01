@@ -15,12 +15,11 @@ require_relative "lib/table.rb"
 
 
   post '/table' do
-    @row = params[:row].to_i
+    @row = params[:row]
     @colum = params[:colum].to_i
     @dir = params[:dir]
-    game.posicionarBarco(2,@dir,@row-1,@colum-1)
+    game.posicionarBarco(2,@dir,@row,@colum)
     @tb = game.getMatriz()
-    @@F = 0
     erb :table
   end
 
