@@ -20,36 +20,41 @@
 	</div>
 
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
-
+	<% nroletra = 1 %>
 	<div class="ui grid">	  
 
   		<div class="eight wide column">
   			<h3 class="ui teal centered header" style="margin-right:20%;">Tus barcos</h1>
-  			<table class="ui right floated celled blue table" style="width:80%; margin-left:20px;">
+  			<table class="ui right floated celled definition blue table" style="width:80%; margin-left:20px; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
+			 			<th></th>
 					  	<% [*1..10].each do |e| %>
 					    <th class=" blue center aligned "><B><%= e %></B></th>
 					    <% end %>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody>	
 				<% @tb.each do |elem| %>
-				    <tr>  		  
+				    <tr>
+				    	<td class="center aligned"><%= nroletra %></td> 	  
+				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= e %></td>
+				    	<td class="center aligned"><%= e == 1 ? "<i class='ship icon'></i>" : "0" %></td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
+				<% nroletra = 1 %>
 				<tbody>
 			</table>
 
 	  	</div>
   		<div class="eight wide column">
   			<h3 class="ui red centered header" style="margin-right:20%;">Posiciones atacadas</h1>
-  			<table class="ui right floated celled red table" style="width:80%; margin-left:20px;">
+  			<table class="ui right floated celled definition red table" style="width:80%; margin-left:20px; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
+			 			<th></th>
 					  	<% [*1..10].each do |e| %>
 					    <th class=" blue center aligned "><B><%= e %></B></th>
 					    <% end %>
@@ -58,11 +63,14 @@
 				<tbody>
 				<% @tb.each do |elem| %>
 				    <tr>  		  
+				    	<td class="center aligned"><%= nroletra %></td> 	  
+				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
 				    	<td class="center aligned">0</td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
+				<% nroletra = 1 %>
 				<tbody>
 			</table>
   		</div>
