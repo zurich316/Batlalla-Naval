@@ -12,7 +12,8 @@ require_relative "lib/table.rb"
 
 
   get '/' do
-    	erb :main
+    game.cleanMatriz()
+    erb :main
   end
 
   get '/table' do
