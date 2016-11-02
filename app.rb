@@ -4,8 +4,10 @@ require_relative "lib/table.rb"
   game =  Table.new(10)
   set :game, game
 
-  table2 =  Table.new(10)
-  set :table2, table2
+  barcos = 5
+  set :barcos, barcos
+  #table2 =  Table.new(10)
+  #set :table2, table2
 
 
 
@@ -18,10 +20,10 @@ require_relative "lib/table.rb"
     erb :table
   end
 
-  get '/jugar' do
-    @tb2 = table2.getMatriz()
-    erb :jugar
-  end
+ # get '/jugar' do
+  #  @tb2 = table2.getMatriz()
+   # erb :jugar
+  #end
 
 
   post '/table' do
@@ -29,13 +31,28 @@ require_relative "lib/table.rb"
     @colum = params[:colum].to_i
     @dir = params[:dir]
     @verificar = game.posicionarBarco(1,@dir,@row,@colum)
+    @bar = barcos
+    if(@verificar)
+      barcos=barcos-1
+    end
     @tb = game.getMatriz()
-    erb :table
+    if(barcos>0)
+       erb :table
+    else
+       erb :attack
+    end
+   
+  end
+
+  get '/attack' do
+    @tb = game.getMatriz()
+    erb :attack
   end
 
   post '/attack' do
     @row = params[:row]
     @colum = params[:colum].to_i
-    @tb2.hacerAtaque(@row, @colum, game)
-    erb :jugar
+    game.hacerAtaque(@row,@colum)
+    @tb = game.getMatriz()
+    erb :attack
   end

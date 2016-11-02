@@ -92,16 +92,16 @@ class	Table
 		return false
 	end
 
-  def devolverPosicionEnMatriz(fila, columna)
+  def devolverElementoDeLaMatriz(fila, columna)
       return @matriz[fila][columna]
   end
 
   def devolverResultadoDeAtaque(fila, columna)
-    posicion = devolverPosicionEnMatriz(fila,columna)
-    if (posicion=="A")
+    elemento = devolverElementoDeLaMatriz(fila,columna)
+    if (elemento=="A")
       return "F"
     end
-    if (posicion == "B")
+    if (elemento == "B")
       return "X"
     end
   end
@@ -110,8 +110,10 @@ class	Table
     @matriz[fila][columna] = elemento
   end
 
-  def hacerAtaque(fila, columna, matrizObjetivo)
-    result = matrizObjetivo.devolverResultadoDeAtaque(fila,columna)
+  def hacerAtaque(fila, columna)
+  	fila = devolverFila(fila)-1
+  	columna=columna-1
+    result = devolverResultadoDeAtaque(fila,columna)
     posicionarElementoEnMatriz(fila,columna,result)
   end
 

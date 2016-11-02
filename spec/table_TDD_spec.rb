@@ -125,7 +125,7 @@ describe Table do
 
 	it "Deberia devolver el elemento en una posicion de la matriz" do
 		@tb.cleanMatriz()
-		expect(@tb.devolverPosicionEnMatriz(5,5)).to match "A"
+		expect(@tb.devolverElementoDeLaMatriz(5,5)).to match "A"
 	end
 
 	it "Deberia devolver X si el ataque fue acertado" do
@@ -142,16 +142,16 @@ describe Table do
 	it "Deberia guardar el elemento en una posicion" do
 		@tb.cleanMatriz()
 		@tb.posicionarElementoEnMatriz(0,0,"B")
-		expect(@tb.devolverPosicionEnMatriz(0,0)).to match "B"
+		expect(@tb.devolverElementoDeLaMatriz(0,0)).to match "B"
 	end
 
 	it "Deberia marcar en la matriz de ataques un ataque acertado" do
-		@tb2 = Table.new(10)
-		@tb2.cleanMatriz()
-		@tb.cleanMatriz()
-		@tb2.posicionarElementoEnMatriz(0,0,"B")
-		@tb.hacerAtaque(0,0,@tb2)
-		expect(@tb.devolverPosicionEnMatriz(0,0)).to match "X"
+		@tb.posicionarElementoEnMatriz(0,0,"B")
+		@tb.hacerAtaque('A',1)
+		expect(@tb.devolverElementoDeLaMatriz(0,0)).to match "X"
+		@tb.posicionarElementoEnMatriz(0,0,"A")
+		@tb.hacerAtaque('A',1)
+		expect(@tb.devolverElementoDeLaMatriz(0,0)).to match "F"
 	end
 
 

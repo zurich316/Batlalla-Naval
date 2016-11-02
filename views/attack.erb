@@ -22,12 +22,11 @@
 
 	
 	<div class="ui basic padded segment">
-		<h1 class="ui blue centered  header">Batalla Naval</h1>
+		<h1 class="ui blue centered  header">Batalla Naval - Fase de ataque</h1>
 	</div>
 	<%if @verificar==false%>
 		<B>Error al ingresar barco, vuelve a intentar</B>
 	<%end%>
-
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
@@ -63,7 +62,7 @@
 	</div>
 </br>		
 
-	<form class="ui form" method='post' action="/table">
+	<form class="ui form" method='post' action="/attack">
 		<div class="five fields">
 			<div class="field" style="margin-left:30%;">
 				<label>Fila: </label>
