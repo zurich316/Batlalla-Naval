@@ -4,6 +4,11 @@ require_relative "lib/table.rb"
   game =  Table.new(10)
   set :game, game
 
+  table2 =  Table.new(10)
+  set :table2, table2
+
+
+
   get '/' do
     	erb :main
   end
@@ -11,6 +16,11 @@ require_relative "lib/table.rb"
   get '/table' do
     @tb = game.getMatriz()
     erb :table
+  end
+
+  get '/jugar' do
+    @tb2 = table2.getMatriz()
+    erb :jugar
   end
 
 
@@ -23,3 +33,9 @@ require_relative "lib/table.rb"
     erb :table
   end
 
+  post '/attack' do
+    @row = params[:row]
+    @colum = params[:colum].to_i
+    @tb2.hacerAtaque(@row, @colum, game)
+    erb :jugar
+  end
