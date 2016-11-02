@@ -104,6 +104,7 @@ class	Table
     if (elemento == 'B')
       return 'X'
     end
+    return elemento
   end
 
   def posicionarElementoEnMatriz(fila,columna,elemento)
