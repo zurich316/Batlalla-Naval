@@ -12,6 +12,7 @@ require_relative "lib/table.rb"
 
 
   get '/' do
+    barcos = 5
     game.cleanMatriz()
     erb :main
   end
