@@ -49,8 +49,16 @@
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= e == 'B' ? "<i class='large black ship icon'></i>" : (e == 'U' ? "<i class='large black ship icon'></i>" : "<i class='large blue theme icon'></i>
-				    	") %></td>
+				    	<td class="center aligned">
+				    		<%= e == 'B' ? "<i class='large black ship icon'></i>" : 
+				    			(e == 'U' ? "<i class='large icons'>
+									  <i class='black ship icon'></i>
+									  <i class='red remove icon'></i>
+									</i>" 
+									: "<i class='large blue theme icon'></i>"
+								) 
+							%>
+						</td>
 				    	<% end %>    
 				    </tr>
 				<% end %>

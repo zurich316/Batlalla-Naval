@@ -54,5 +54,10 @@ require_relative "lib/table.rb"
     @colum = params[:colum].to_i
     game.hacerAtaque(@row,@colum)
     @tb = game.getMatriz()
-    erb :attack
+    if game.hayBarcosSinUndir()
+      erb :attack
+    else
+      erb :end
+    end
+    
   end
