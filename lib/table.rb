@@ -32,7 +32,7 @@ class	Table
 
 	#verificar
 	def verificarsisepuedeponerbarcos (row,colum)
-		if (@matriz[row][colum] == "B")
+		if (@matriz[row][colum] == 'B')
 		   return false
 		else
 		   return true
@@ -84,7 +84,7 @@ class	Table
 
 	def hayBarcosSinUndir()
 		@matriz.each do |chr|
-			res = chr.index("B")
+			res = chr.index('B')
 			if res != nil
 				return true
 			end
@@ -98,11 +98,11 @@ class	Table
 
   def devolverResultadoDeAtaque(fila, columna)
     elemento = devolverElementoDeLaMatriz(fila,columna)
-    if (elemento=="A")
-      return "F"
+    if (elemento=='A')
+      return 'F'
     end
-    if (elemento == "B")
-      return "X"
+    if (elemento == 'B')
+      return 'X'
     end
   end
 
