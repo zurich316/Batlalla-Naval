@@ -32,7 +32,7 @@
 	<div class="ui grid">	  
 
   		<div class="sixteen wide column">
-  			<h3 class="ui teal centered header">Tus Barcos</h1>
+  			<h3 class="ui red centered header">Atacando</h1>
   			<table class="ui  celled definition blue table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
@@ -48,8 +48,18 @@
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
 				  		<% elem.each do |e| %>
-				    	<td class="center aligned"><%= e == 'B' ? "<i class='large black ship icon'></i>" : (e == 'U' ? "<i class='large black ship icon'></i>" : "<i class='large blue theme icon'></i>
-				    	") %></td>
+				    	<td class="center aligned">
+				    		<%= e == 'F' ? "<i class='large icons'>
+											  <i class='red horizontally flipped rocket icon'></i>
+											  <i class='corner blue theme icon'></i>
+											</i>" 
+											: (e == 'X' ? "<i class='large icons'>
+															  <i class='red horizontally flipped rocket icon'></i>
+															  <i class='corner green check icon'></i>
+															</i>" : "<i class='large blue theme icon'></i>"
+											  ) 
+							%>
+						</td>
 				    	<% end %>    
 				    </tr>
 				<% end %>
@@ -64,6 +74,7 @@
 
 	<form class="ui form" method='post' action="/attack">
 		<div class="five fields">
+
 			<div class="field" style="margin-left:30%;">
 				<label>Fila: </label>
 				<select name="row" >
@@ -99,7 +110,7 @@
 		</div>
 		-->
     	
-		<input class="ui yellow button" type="submit" value ="Generar" style="margin-left:47%;">
+		<input class="ui red button" type="submit" value ="Atacar" style="margin-left:47%;">
 	</form>
 
 
