@@ -12,8 +12,9 @@ require_relative "lib/board.rb"
 
 
   get '/' do
-      barcos = 5
-    	erb :main
+    barcos = 5
+    game.cleanMatriz()
+    erb :main
   end
 
   get '/table' do
