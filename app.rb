@@ -1,7 +1,7 @@
 require 'sinatra'
-require_relative "lib/table.rb"
+require_relative "lib/board.rb"
 
-  game =  Table.new(10)
+  game =  Board.new()
   set :game, game
 
   barcos = 5
@@ -12,10 +12,12 @@ require_relative "lib/table.rb"
 
 
   get '/' do
+      barcos = 5
     	erb :main
   end
 
   get '/table' do
+    
     @tb = game.getMatriz()
     erb :table
   end
@@ -29,9 +31,7 @@ require_relative "lib/table.rb"
   post '/table' do
     @row = params[:row]
     @colum = params[:colum].to_i
-    @dir = params[:dir]
-    @verificar = game.posicionarBarco(1,@dir,@row,@colum)
-    @bar = barcos
+    @verificar = game.posicionarBarco(@row,@colum)
     if(@verificar)
       barcos=barcos-1
     end
