@@ -1,6 +1,5 @@
 class	Board
    	def initialize()
-
 	   @matriz = Array.new(10){Array.new(10){'A'}}
   	end
 

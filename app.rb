@@ -2,64 +2,44 @@ require 'sinatra'
 require_relative "lib/board.rb"
 require_relative "lib/game.rb"
 
-  game =  Board.new()
+  game =  Game.new()
   set :game, game
 
-  barcos = 5
-  set :barcos, barcos
-  #table2 =  Table.new(10)
-  #set :table2, table2
-
-
-
   get '/' do
-    barcos = 5
-    game.cleanMatriz()
+    game.limpiarTablero()
+    game.regresarBarcos()
     erb :main
   end
-
-  get '/table' do
-    
-    @tb = game.getMatriz()
+ 
+  get '/table' do      
     erb :table
   end
-
- # get '/jugar' do
-  #  @tb2 = table2.getMatriz()
-   # erb :jugar
-  #end
-
-
+ 
   post '/table' do
     @row = params[:row]
     @colum = params[:colum].to_i
-    @verificar = game.posicionarBarco(@row,@colum)
-    if(@verificar)
-      barcos=barcos-1
-    end
-    @tb = game.getMatriz()
-    if(barcos>0)
+    game.ponerBarco(@row,@colum)
+    if(game.hayBarcos())
        erb :table
     else
        erb :attack
     end
-   
   end
 
   get '/attack' do
-    @tb = game.getMatriz()
     erb :attack
   end
-
+=begin
   post '/attack' do
     @row = params[:row]
     @colum = params[:colum].to_i
     game.hacerAtaque(@row,@colum)
-    @tb = game.getMatriz()
     if game.hayBarcosSinUndir()
       erb :attack
     else
       erb :end
     end
-    
+ 
   end
+
+=end

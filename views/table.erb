@@ -27,7 +27,6 @@
 	<%if @verificar==false%>
 		<B>Error al ingresar barco, vuelve a intentar</B>
 	<%end%>
-
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
@@ -44,7 +43,7 @@
 					</tr>
 				</thead>
 				<tbody>	
-				<% @tb.each do |elem| %>
+				<% settings.game.getBoard().each do |elem| %>
 				    <tr>
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>

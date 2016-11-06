@@ -1,27 +1,44 @@
 class Game
-	def newGame()
-		barcos = 5
-		tb = Board.new()
-		tb.cleanMatriz()
+	def initialize()
+		@barcos = 5
+		@tb = Board.new()		
 	end
 
-	def getBoard()
-		return tb
-	end 
+	def limpiarTablero()
+		@tb.cleanMatriz()
+	end
 
+	def regresarBarcos()
+		@barcos = 5
+	end
+
+	def hayBarcos()
+		if(@barcos != 0)
+			return true
+		else
+			return false
+		end
+	end
+
+	
 	def getBarcos()
-		return barcos
+		return @barcos
 	end
 
 	def getBoard()
-		return tb.getMatriz()
+		return @tb.getMatriz()
 	end
+
 
 	def ponerBarco(row,colum)
-		verificar = game.posicionarBarco(row,colum)
+		verificar = @tb.posicionarBarco(row,colum)
 		if(verificar)
-			barcos=barcos-1
+			@barcos=@barcos-1
+			return true
+    	else 
+    		return false
     	end
+
 	end
 
 	def play()
@@ -30,7 +47,7 @@ class Game
 	end
 
 	def endGame()
-		if(tb.hayBarcosSinUndir())
+		if(@tb.hayBarcosSinUndir())
 			return true
 		else
 			return false
@@ -38,7 +55,7 @@ class Game
 	end
 
 	def atacar(fila, columna)
-		tb.hacerAtaque(fila,columna)
+		@tb.hacerAtaque(fila,columna)
 	end
 
 end
