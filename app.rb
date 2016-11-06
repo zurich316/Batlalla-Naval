@@ -1,5 +1,6 @@
 require 'sinatra'
 require_relative "lib/board.rb"
+require_relative "lib/game.rb"
 
   game =  Board.new()
   set :game, game
