@@ -54,11 +54,4 @@ describe Game do
 
 	end
 
-
-
-
-
-
-
-
 end
