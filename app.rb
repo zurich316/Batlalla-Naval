@@ -39,6 +39,5 @@ require_relative "lib/game.rb"
     else
       erb :attack
     end
- 
   end
 
