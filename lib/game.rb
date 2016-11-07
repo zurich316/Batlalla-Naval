@@ -41,20 +41,15 @@ class Game
 
 	end
 
-	def play()
-
-
-	end
-
 	def endGame()
 		if(@tb.hayBarcosSinUndir())
-			return true
-		else
 			return false
+		else
+			return true
 		end
 	end
 
-	def atacar(fila, columna)
+	def hacerAtaque(fila, columna)
 		@tb.hacerAtaque(fila,columna)
 	end
 

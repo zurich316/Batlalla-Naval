@@ -29,17 +29,16 @@ require_relative "lib/game.rb"
   get '/attack' do
     erb :attack
   end
-=begin
+
   post '/attack' do
     @row = params[:row]
     @colum = params[:colum].to_i
     game.hacerAtaque(@row,@colum)
-    if game.hayBarcosSinUndir()
-      erb :attack
-    else
+    if game.endGame()
       erb :end
+    else
+      erb :attack
     end
  
   end
 
-=end
