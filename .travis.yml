@@ -1,5 +1,7 @@
-language: ruby
-rvm:
-  - 2.2
-  - jruby
-  - rbx-2
+{
+  "language": "ruby",
+  "rvm": 2.2,
+  "group": "stable",
+  "dist": "precise",
+  "os": "linux"
+}
