@@ -1,8 +1,8 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     diff-lcs (1.2.5)
-    rack (1.6.4)
+    rack (1.6.5)
     rack-protection (1.5.3)
       rack
     rspec (3.5.0)
