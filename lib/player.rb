@@ -1,4 +1,4 @@
-class Game
+class Player
 	def initialize()
 		@barcos = 5
 		@tb = Board.new()		

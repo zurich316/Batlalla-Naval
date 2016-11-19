@@ -1,8 +1,8 @@
-require 'game'
+require 'player'
 
-describe Game do
+describe Player do
 	before (@each) do
-		@game =Game.new()
+		@game =Player.new()
 	end
 	
 	it "Deveria regresar 5 la cantidad de barcos que se ponen en el tablero" do
