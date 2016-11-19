@@ -1,8 +1,9 @@
 require 'sinatra'
 require_relative "lib/board.rb"
 require_relative "lib/game.rb"
+require_relative "lib/player.rb"
 
-  game =  Game.new()
+  game =  Player.new()
   set :game, game
 
   get '/' do
