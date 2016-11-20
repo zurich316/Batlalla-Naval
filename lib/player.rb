@@ -5,7 +5,7 @@ class Player
 	end
 
 	def limpiarTablero()
-		@tb.cleanMatriz()
+		@tb.cleanBoard()
 	end
 
 	def regresarBarcos()
@@ -26,23 +26,23 @@ class Player
 	end
 
 	def getBoard()
-		return @tb.getMatriz()
+		return @tb.retornarTablero()
+	end
+
+	def verificarPosicionBarco(fila, columna)
+		return @tb.posicionarBarco(fila,columna)
 	end
 
 
-	def ponerBarco(row,colum)
-		verificar = @tb.posicionarBarco(row,colum)
-		if(verificar)
+	def ponerBarco(fila,columna)
+		if(verificarPosicionBarco(fila, columna))
 			@barcos=@barcos-1
-			return true
-    	else 
-    		return false
-    	end
+		end
 
 	end
 
 	def endGame()
-		if(@tb.hayBarcosSinUndir())
+		if(@tb.hayBarcosEnElTablero?())
 			return false
 		else
 			return true

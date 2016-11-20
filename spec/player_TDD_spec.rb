@@ -2,54 +2,54 @@ require 'player'
 
 describe Player do
 	before (@each) do
-		@game =Player.new()
+		@jugador =Player.new()
 	end
 	
-	it "Deveria regresar 5 la cantidad de barcos que se ponen en el tablero" do
-		resultado = @game.getBarcos()
+	it "Deveria regresar la cantidad de barcos que se ponen en el tablero" do
+		resultado = @jugador.getBarcos()
 		expect(resultado).to match 5
 	end
 
 	it "Debe avisar cuando no haya mas barcos que colocar" do
-		@game.ponerBarco('A',1)
-		@game.ponerBarco('A',2)
-		@game.ponerBarco('A',3)
-		@game.ponerBarco('A',4)
-		@game.ponerBarco('A',5)
-		resultado = @game.hayBarcos()
+		@jugador.ponerBarco('A',1)
+		@jugador.ponerBarco('A',2)
+		@jugador.ponerBarco('A',3)
+		@jugador.ponerBarco('A',4)
+		@jugador.ponerBarco('A',5)
+		resultado = @jugador.hayBarcos()
 		expect(resultado).to match false
 	end
 
 	it "Debe regresar un tablero limpio" do
-		@game.ponerBarco('A',1)
-		@game.limpiarTablero()
-		resultado = @game.endGame()
+		@jugador.ponerBarco('A',1)
+		@jugador.limpiarTablero()
+		resultado = @jugador.endGame()
 		expect(resultado).to match true
 	end
 
 
 	it "Debe regresar un nuevo juego" do
-		@game.ponerBarco('A',1)
-		@game.limpiarTablero()
-		resultado = @game.endGame()
+		@jugador.ponerBarco('A',1)
+		@jugador.limpiarTablero()
+		resultado = @jugador.endGame()
 		expect(resultado).to match true
 	end
 
 
 	it "Debe regresar el tablero inicial" do
-		resultado = @game.getBoard()
+		resultado = @jugador.getBoard()
 		expect(resultado).to match Array.new(10){Array.new(10){'A'}}
 	end
 
 	it "Debe mostrar si en el tablero se hizo un ataque exitoso o fallido" do
 		#Ataque fallido
-		@game.hacerAtaque('A', 1)
-		resultado = @game.getBoard()
+		@jugador.hacerAtaque('A', 1)
+		resultado = @jugador.getBoard()
 		expect(resultado[0][0]).to match 'F'
 		#Ataque exitoso
-		@game.ponerBarco('A',1)
-		@game.hacerAtaque('A', 1)
-		resultado = @game.getBoard()
+		@jugador.ponerBarco('A',1)
+		@jugador.hacerAtaque('A', 1)
+		resultado = @jugador.getBoard()
 		expect(resultado[0][0]).to match 'X'
 
 	end

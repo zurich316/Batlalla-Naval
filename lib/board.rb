@@ -3,11 +3,11 @@ class	Board
 	   @matriz = Array.new(10){Array.new(10){'A'}}
   	end
 
-	def getMatriz()
+	def retornarTablero()
 		return @matriz
 	end
 
-	def cleanMatriz()
+	def cleanBoard()
 		return @matriz = Array.new(10){Array.new(10){'A'}}
 	end
 
@@ -15,6 +15,14 @@ class	Board
 		abc = [*'A'..'J']
 		return abc.index(fila)
 	end
+
+	def posicionarElementoEnMatriz(fila,columna,elemento)
+   	 	@matriz[fila][columna] = elemento
+  	end
+
+  	def devolverElementoDeLaMatriz(fila, columna)
+      	return @matriz[fila][columna]
+ 	end
 
 	def posicionarBarco(row,colum)
 		if(verificarsisepuedeponerbarcos(row,colum))
@@ -31,14 +39,22 @@ class	Board
 	def verificarsisepuedeponerbarcos (row,colum)
 		row = devolverFila(row)
 		colum=colum-1
-		if (@matriz[row][colum] == 'B')
+		if (devolverElementoDeLaMatriz(row,colum) == 'B')
 		   return false
 		else
 		   return true
 		end
 	end
 
-	def hayBarcosSinUndir()
+	def verificarTableroVacio()
+		if(@matriz == Array.new(10){Array.new(10){'A'}})
+			return true
+		else
+			return false
+		end
+	end
+
+	def hayBarcosEnElTablero?()
 		@matriz.each do |chr|
 			res = chr.index('B')
 			if res != nil
@@ -48,33 +64,27 @@ class	Board
 		return false
 	end
 
-  def devolverElementoDeLaMatriz(fila, columna)
-      return @matriz[fila][columna]
-  end
+ 	def hacerAtaque(fila, columna)
+ 		fila = devolverFila(fila)
+	  	columna=columna-1
+	    elemento = devolverElementoDeLaMatriz(fila,columna)
+	    if (elemento=='A')
+	      posicionarElementoEnMatriz(fila,columna,'F')
+	    end
 
-  def devolverResultadoDeAtaque(fila, columna)
-    elemento = devolverElementoDeLaMatriz(fila,columna)
-    if (elemento=='A')
-      return 'F'
-    end
-    if (elemento == 'B')
-      return 'X'
-    end
-    return elemento
-  end
-
-  def posicionarElementoEnMatriz(fila,columna,elemento)
-    @matriz[fila][columna] = elemento
-  end
-
-  def hacerAtaque(fila, columna)
-  	fila = devolverFila(fila)
-  	columna=columna-1
-    result = devolverResultadoDeAtaque(fila,columna)
-    posicionarElementoEnMatriz(fila,columna,result)
-  end
-
+	    if (elemento == 'B')
+	      posicionarElementoEnMatriz(fila,columna,'X')
+	    end
+ 	end
 =begin
+	def hacerAtaque2(fila, columna)
+	  	fila = devolverFila(fila)
+	  	columna=columna-1
+	    result = devolverResultadoDeAtaque(fila,columna)
+	    posicionarElementoEnMatriz(fila,columna,result)
+  	end
+
+
 	
 def posicionarBarco1(tam,dir,row,colum)
 		if(asegurarBarcoEnmatriz(tam,dir,row,colum) && verificarsisepuedeponerbarcos(row,colum) )
