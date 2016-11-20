@@ -54,4 +54,25 @@ describe Player do
 
 	end
 
+	it "Debe verificar si el ataque se ejecuto en el mismo lugar" do
+		@jugador.hacerAtaque('A',1)
+		resultado = @jugador.verificarAtaque('A',1)
+		expect(resultado).to match false
+
+		resultado = @jugador.verificarAtaque('A',2)
+		expect(resultado).to match true
+
+	end
+
+
+	it "Verificar posicionar un barco en posicion sobre otro barco"	do
+		resultado = @jugador.verificarPosicionBarco('A',1)
+		resultado.should == true
+
+		@jugador.ponerBarco('B',3)
+		resultado = @jugador.verificarPosicionBarco('B',3)
+		resultado.should == false
+	end
+
+
 end

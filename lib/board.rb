@@ -64,17 +64,31 @@ class	Board
 		return false
 	end
 
- 	def hacerAtaque(fila, columna)
- 		fila = devolverFila(fila)
+	def verificarAtaque(fila, columna)
+		fila = devolverFila(fila)
 	  	columna=columna-1
-	    elemento = devolverElementoDeLaMatriz(fila,columna)
-	    if (elemento=='A')
-	      posicionarElementoEnMatriz(fila,columna,'F')
-	    end
+		elemento = devolverElementoDeLaMatriz(fila,columna)
+		if(elemento == 'F' || elemento == 'X')
+			return false
+		else
+			return true
+		end
+		
+	end
 
-	    if (elemento == 'B')
-	      posicionarElementoEnMatriz(fila,columna,'X')
-	    end
+ 	def hacerAtaque(fila, columna)
+ 		if(verificarAtaque(fila,columna))
+ 			fila = devolverFila(fila)
+		  	columna=columna-1
+		    elemento = devolverElementoDeLaMatriz(fila,columna)
+		    if (elemento=='A')
+		      posicionarElementoEnMatriz(fila,columna,'F')
+		    end
+
+		    if (elemento == 'B')
+		      posicionarElementoEnMatriz(fila,columna,'X')
+		    end
+ 		end		
  	end
 =begin
 	def hacerAtaque2(fila, columna)

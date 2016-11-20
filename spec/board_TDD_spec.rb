@@ -88,6 +88,15 @@ describe Board do
 		expect(resultado).to match "F"
 	end
 
+	it "Debe verificar si el ataque se ejecuto en el mismo lugar" do
+		@tb.hacerAtaque('A',1)
+		resultado = @tb.verificarAtaque('A',1)
+		expect(resultado).to match false
+
+		resultado = @tb.verificarAtaque('A',2)
+		expect(resultado).to match true
+
+	end
 
 =begin
 	it "Devuelve un array del array y debe ser igual a en 10" do

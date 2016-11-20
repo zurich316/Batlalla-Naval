@@ -50,7 +50,13 @@ class Player
 	end
 
 	def hacerAtaque(fila, columna)
-		@tb.hacerAtaque(fila,columna)
+		if(verificarAtaque(fila,columna))
+			@tb.hacerAtaque(fila,columna)
+		end
+	end
+
+	def verificarAtaque(fila,columna)
+		return @tb.verificarAtaque(fila,columna)
 	end
 
 end
