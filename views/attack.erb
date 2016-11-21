@@ -13,7 +13,7 @@
 	<title>Batalla Naval</title>
 	<style>
 		body {
-		    background-image: url('/images/fondo1.jpg');		    
+		    background-image: url('/images/46.jpg');		    
 		}
 	</style>
 
@@ -22,15 +22,53 @@
 
 	
 	<div class="ui basic padded segment">
+		<a class="ui orange right floated inverted button"> Salir </a>	
 		<h1 class="ui blue centered  header">Batalla Naval - Fase de ataque</h1>
+							
 	</div>
+
 	
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
 
-  		<div class="sixteen wide column">
-  			<h3 class="ui red centered header">Atacando</h1>
+  		<div class="eight wide column">
+  			<h3 class="ui purple centered header">Posiciones Atacadas</h1>
+  			<table class="ui celled definition red table" style="width:70%; margin-left:15%; table-layout: fixed;">
+			 	<thead>
+			 		<tr>
+			 			<th></th>
+					  	<% [*1..10].each do |e| %>
+					    <th class=" blue center aligned "><B><%= e %></B></th>
+					    <% end %>
+					</tr>
+				</thead>
+				<tbody>	
+				<% settings.game.getBoard().each do |elem| %>
+				    <tr>
+				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
+				    	<% nroletra += 1 %>
+				  		<% elem.each do |e| %>
+				    	<td class="center aligned">
+				    		<%= e == 'F' ? "<i class='large icons'>
+											  <i class='red horizontally flipped rocket icon'></i>
+											  <i class='corner blue theme icon'></i>
+											</i>" 
+											: (e == 'X' ? "<i class='large icons'>
+															  <i class='red horizontally flipped rocket icon'></i>
+															  <i class='corner green check icon'></i>
+															</i>" : "<i class='large blue theme icon'></i>")%>
+						</td>
+				    	<% end %>    
+				    </tr>
+				<% end %>
+				<% nroletra = 0 %>
+				<tbody>
+			</table>
+
+	  	</div>
+	  	<div class="eight wide column">
+  			<h3 class="ui purple centered header">Ataques Recibidos</h1>
   			<table class="ui celled definition red table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
@@ -69,23 +107,30 @@
 </br>		
 
 	<form class="ui form" method='post' action="/attack">
+		<div class="ui red inverted compact segment" style="margin-left:40%;">
+			<h3 class ="ui centered header">Ingresa tus coordenadas para atacar</h3>
+		</div>
 		<div class="five fields">
 
 			<div class="field" style="margin-left:30%;">
-				<label>Fila: </label>
-				<select name="row" >
-				  <% [*'A'..'J'].each do |row| %>
-				    <option value=<%= row %>><%= row %></option>
-				  <% end %>
-				</select>
+				<div class="ui basic segment">
+					<a class="ui olive label">Fila: </a>
+					<select name="row" >
+					  <% [*'A'..'J'].each do |row| %>
+					    <option value=<%= row %>><%= row %></option>
+					  <% end %>
+					</select>
+				</div>
 			</div>
 			<div class="field">
-				<label>Columna: </label>
-				<select name="colum" >
-					  <% [*1..10].each do |column| %>
-					    <option value=<%= column %>><%= column %></option>
-					  <% end %>
-				</select>
+				<div class="ui basic segment">
+					<a class="ui olive label">Columna:</a>				
+					<select name="colum" >
+						  <% [*1..10].each do |column| %>
+						    <option value=<%= column %>><%= column %></option>
+						  <% end %>
+					</select>
+				</div>
 			</div>
 		</div>
 
@@ -109,6 +154,34 @@
 		<input class="ui red button" type="submit" value ="Atacar" style="margin-left:47%;">
 	</form>
 
+	<div class="ui modal">
+
+			<div class="header">Esta seguro?</div>
+			<div class="content">
+				<p>Usted esta apunto de salir de la partida, todo el progreso se borrara</p>
+			</div>
+			<div class="actions">
+				<a class="ui green inverted button" href="/"> Aceptar </a>
+				<a class="ui inverted red positive right button" data-value="Cancelar">Cencelar</a>
+			</div>
+
+	</div>
+
+	<script type="text/javascript">
+	$('.ui.modal')
+	.modal('setting', 'closable', false)
+	.modal('attach events', '.orange.button', 'show')
+	.modal({
+			onApprove: function(){
+				switch ($(this).data("value")) {			       
+			        case 'Cancelar':			            
+			            $(".ui.modal").modal("hide");
+			            break;			        
+			    }
+			}
+		})
+	;
+	</script>
 
 
 </body>
