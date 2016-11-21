@@ -13,6 +13,31 @@ class Game
 		return @player2.getBoard()
 	end
 
+	def getBarcosJugador1()
+		return @player1.regresarBarcos()
+	end
+
+	def getBarcosJugador2()
+		return @player1.regresarBarcos()
+	end
+
+	def hayBarcosEnjugador1()
+		if(@player1.getBarcos()==0)
+			return false
+		else
+			return true
+		end
+	end
+
+	def hayBarcosEnjugador2()
+		if(@player2.getBarcos()==0)
+			return false
+		else
+			return true
+		end
+	end
+
+
 	def retornarTurno()
 		return @turno
 	end

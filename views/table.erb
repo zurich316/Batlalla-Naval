@@ -43,7 +43,28 @@
 					</tr>
 				</thead>
 				<tbody>	
-				<% settings.game.getBoard().each do |elem| %>
+				<%if settings.game.retornarTurno() == "j1" %>	
+				<% settings.game.getBoard1().each do |elem| %>
+					  <tr>
+				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
+				    	<% nroletra += 1 %>
+				  		<% elem.each do |e| %>
+				    	<td class="center aligned">
+				    		<%= e == 'B' ? "<i class='large black ship icon'></i>" : 
+				    			(e == 'U' ? "<i class='large icons'>
+									  <i class='black ship icon'></i>
+									  <i class='red remove icon'></i>
+									</i>" 
+									: "<i class='large blue theme icon'></i>"
+								) 
+							%>
+						</td>
+				    	<% end %>    
+				    </tr>
+				<% end %>
+				<%else%>
+				<% settings.game.getBoard2().each do |elem| %>
+			
 				    <tr>
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  
 				    	<% nroletra += 1 %>
@@ -61,6 +82,7 @@
 				    	<% end %>    
 				    </tr>
 				<% end %>
+				<%end%>
 				<% nroletra = 0 %>
 				<tbody>
 			</table>
