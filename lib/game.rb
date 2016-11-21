@@ -13,6 +13,11 @@ class Game
 		return @player2.getBoard()
 	end
 
+	def retornarTurno()
+		return @turno
+	end
+
+
 	def ponerBarco(fila, columna)
 		if(@turno == "j1")
 			@player1.ponerBarco(fila,columna)

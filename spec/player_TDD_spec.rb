@@ -41,16 +41,21 @@ describe Player do
 		expect(resultado).to match Array.new(10){Array.new(10){'A'}}
 	end
 
+	it "Deberia devolver el elemento en una posicion del tablero" do
+		resultado = @jugador.devolverElementoDeLaTabla(5,5)
+		expect(resultado).to match "A"
+	end
+
 	it "Debe mostrar si en el tablero se hizo un ataque exitoso o fallido" do
 		#Ataque fallido
 		@jugador.hacerAtaque('A', 1)
-		resultado = @jugador.getBoard()
-		expect(resultado[0][0]).to match 'F'
+		resultado = @jugador.devolverElementoDeLaTabla(0,0)
+		expect(resultado).to match 'F'
 		#Ataque exitoso
 		@jugador.ponerBarco('A',1)
 		@jugador.hacerAtaque('A', 1)
-		resultado = @jugador.getBoard()
-		expect(resultado[0][0]).to match 'X'
+		resultado = @jugador.devolverElementoDeLaTabla(0,0)
+		expect(resultado).to match 'X'
 
 	end
 
@@ -73,6 +78,7 @@ describe Player do
 		resultado = @jugador.verificarPosicionBarco('B',3)
 		resultado.should == false
 	end
+
 
 
 end
