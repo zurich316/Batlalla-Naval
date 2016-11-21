@@ -59,4 +59,8 @@ class Player
 		return @tb.verificarAtaque(fila,columna)
 	end
 
+	def devolverElementoDeLaTabla(fila,columna)
+		return @tb.devolverElementoDeLaMatriz(fila,columna)
+	end
+
 end
