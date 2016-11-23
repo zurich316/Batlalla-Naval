@@ -123,7 +123,7 @@ describe Game do
 	it "deberia regresar Player 1 Wins! porque en el tablero del judaro 1 aun hay barcos y ya no hay ninguna donde el jugador 2" do
 		@game.placeShip('A',1)
 		resultado = @game.whoWins?()
-		expect(resultado).to match "Player 1 Wins!"
+		expect(resultado).to match "Jugador 1 gana!"
 	end
 =begin
 	it "deberia regresar true ya que ninguno de los jugadores tiene barcos en sus tableros" do
