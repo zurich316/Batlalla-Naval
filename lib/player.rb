@@ -1,19 +1,19 @@
-class Player
-	def initialize()
-		@barcos = 5
-		@tb = Board.new()		
+class	Player
+   	def initialize()
+	   @board = Array.new(10){Array.new(10){'A'}}
+	   @ships = 5
+  	end
+
+  	def cleanBoard()
+		return @board = Array.new(10){Array.new(10){'A'}}
 	end
 
-	def limpiarTablero()
-		@tb.cleanBoard()
+  	def cleanShips()
+		@ships = 5
 	end
 
-	def regresarBarcos()
-		@barcos = 5
-	end
-
-	def hayBarcos()
-		if(@barcos != 0)
+	def areThereShips?()
+		if(@ships != 0)
 			return true
 		else
 			return false
@@ -21,46 +21,147 @@ class Player
 	end
 
 	
-	def getBarcos()
-		return @barcos
+	def getShips()
+		return @ships
 	end
 
 	def getBoard()
-		return @tb.retornarTablero()
+		return @board
 	end
 
-	def verificarPosicionBarco(fila, columna)
-		return @tb.posicionarBarco(fila,columna)
+	def returnRow(row)
+		abc = [*'A'..'J']
+		return abc.index(row)
 	end
 
+	def placeElementInTheBoard(row,column,element)
+   	 	@board[row][column] = element
+  	end
 
-	def ponerBarco(fila,columna)
-		if(verificarPosicionBarco(fila, columna))
-			@barcos=@barcos-1
+  	def returnElementFromBoard(row, column)
+      	return @board[row][column]
+ 	end
+
+	def placeShip(row,colum)
+		if(checkPlaceShip(row,colum))
+			row = returnRow(row)
+			colum=colum-1
+			placeElementInTheBoard(row,colum,'B')	
+			@ships=@ships-1
 		end
-
 	end
 
-	def endGame()
-		if(@tb.hayBarcosEnElTablero?())
+	def checkPlaceShip(row,colum)
+		row = returnRow(row)
+		colum=colum-1
+		if (returnElementFromBoard(row,colum) == 'B')
+		   return false
+		else
+		   return true
+		end
+	end
+
+	def BoardEmpty?()
+		if(@board == Array.new(10){Array.new(10){'A'}})
+			return true
+		else
+			return false
+		end
+	end
+
+	def isThereShipsInTheBoard?()
+		@board.each do |chr|
+			res = chr.index('B')
+			if res != nil
+				return true
+			end
+		end
+		return false
+	end
+
+	def checkAttack(row, column)
+		row = returnRow(row)
+	  	column=column-1
+		element = returnElementFromBoard(row,column)
+		if(element == 'F' || element == 'X')
 			return false
 		else
 			return true
 		end
+		
 	end
 
-	def hacerAtaque(fila, columna)
-		if(verificarAtaque(fila,columna))
-			@tb.hacerAtaque(fila,columna)
+ 	def Attack!(row, column)
+ 		if(checkAttack(row,column))
+ 			row = returnRow(row)
+		  	column=column-1
+		    element = returnElementFromBoard(row,column)
+		    if (element=='A')
+		      placeElementInTheBoard(row,column,'F')
+		    end
+
+		    if (element == 'B')
+		      placeElementInTheBoard(row,column,'X')
+		    end
+
+ 		end		
+ 	end
+=begin
+	def Attack!2(row, column)
+	  	row = returnRow(row)
+	  	column=column-1
+	    result = devolverResultadoDeAtaque(row,column)
+	    placeElementInTheBoard(row,column,result)
+  	end
+
+
+	
+def posicionarBarco1(tam,dir,row,colum)
+		if(asegurarBarcoEnboard(tam,dir,row,colum) && checkPlaceShip(row,colum) )
+			row = returnRow(row)-1
+			colum=colum-1
+			count = 0
+			if(dir=="h")
+				while count < tam
+					@matriz[row][count+colum] = 'B'
+					count+=1
+				end
+			else
+				while count < tam
+					@matriz[row+count][colum] = 'B'
+					count+=1
+				end
+			end
+			return true
+		else
+			return false
+		end
+
+	end
+
+	def asegurarBarcoEnmatriz(tam,dir,row,colum)
+		tam=tam-1
+		row = devolverFila(row)-1
+		colum=colum-1
+		if(dir=='h')
+			if(colum+tam>=@tam)
+				return false
+			else
+				return true
+			end
+		else
+			if(row+tam>=@tam)
+				return false
+			else
+				return true
+			end
 		end
 	end
+=end
 
-	def verificarAtaque(fila,columna)
-		return @tb.verificarAtaque(fila,columna)
-	end
 
-	def devolverElementoDeLaTabla(fila,columna)
-		return @tb.devolverElementoDeLaMatriz(fila,columna)
-	end
+
+
+
 
 end
