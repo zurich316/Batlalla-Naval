@@ -5,14 +5,14 @@ describe Game do
 		@game =Game.new()
 	end
 	
-	it "Deveria devolver el tablero del primer y segundo  jugador vacio al comienzo del juego" do
+	it "Deveria devolver los tableros del primer y segundo jugador vacios al comienzo del juego" do
 		resultado = @game.getBoard1()
 		expect(resultado).to match Array.new(10){Array.new(10){'A'}}
 		resultado = @game.getBoard2()
 		expect(resultado).to match Array.new(10){Array.new(10){'A'}}
 	end
 
-	it "Deveria devolver cantidad inicial que es 5 barcos del primer y segundo  " do
+	it "Deveria devolver la cantidad inicial de barcos que el primer y segundo jugador pueden poner, que es 5" do
 		resultado = @game.getShipPlayer1()
 		expect(resultado).to match 5
 		resultado = @game.getShipPlayer2()
@@ -24,7 +24,7 @@ describe Game do
 		expect(resultado).to match "j1"
 	end
 
-	it "Se cambia de turno y deveria devolver j2. Despues sse cambia nuevamente y y deberia devolver j1" do 
+	it "Cuando se cambia de turno, deberia devolver el turno del j2. Despues se cambia nuevamente y deberia devolver el turno del j1" do 
 		@game.changeTurn()
 		resultado = @game.returnTurn()
 		expect(resultado).to match "j2"
@@ -34,7 +34,7 @@ describe Game do
 		expect(resultado).to match "j1"
 	end
 
-	it "deberia devolver siempre j1 en cualquier caso" do
+	it "Deberia devolver siempre j1 en cualquier caso que se resete los turnos" do
 		@game.changeTurn()
 		@game.resetTurn()
 		resultado = @game.returnTurn()
@@ -45,19 +45,20 @@ describe Game do
 		expect(resultado).to match "j1"
 	end
 
-	it "Posicionar un barco en la primera tabla en la posicion B,2 y devuelva el barco(B)" do
+	it "Deberia posicionar un barco en la primera tabla en la posicion dada y deberia devolver que se ha colocado el barco en la tabla" do
 		@game.placeShip('B',2)
 		resultado = (@game.getBoard1())[1][1]
 		expect(resultado).to match "B"
 	end
 
-	it "Pasasr de turno al jugador 2 y colocar un barco en la posicion A,5 en la segunda tabla y que devuelve el barco(B)" do
+	it "Cuando se cambia de turno al jugador 2, deberia colocar un barco en la posicion dada en la segunda tabla y deberia devuelver que se ha colocado el barco en la tabla" do
 		@game.changeTurn()
 		@game.placeShip('A',5)
 		resultado = (@game.getBoard2())[0][4]
 		expect(resultado).to match "B"
 	end
-	it"Debe devolver true ya que cada jugador tiene barcos que colocar" do 
+
+	it "Debe validar como positivo cuando un jugador aun tiene barcos que colocar" do 
 		resultado = @game.areTherShipsInPlayer1?()
 		expect(resultado).to match true
 
@@ -66,7 +67,7 @@ describe Game do
 		expect(resultado).to match true
 	end
 
-	it "Deveria devolver fasle despues de que se hayan colocado 5 barcos el jugador 1 porque ya no tiene mas barcos que colocar " do
+	it "Deberia validar como negativo despues que el jugador 1 haya colocado sus todos barcos, que son 5, en la tabla" do
 		@game.placeShip('A',5)
 		@game.placeShip('A',4)
 		@game.placeShip('A',3)
@@ -76,7 +77,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "Despues de cambiar de turno, deveria devolver fasle despues de que se hayan colocado 5 barcos el jugador 2 porque ya no tiene mas barcos que colocar " do
+	it "Luego de cambiar de turno, deberia validar como negativo despues que el jugador 2 haya colocado sus todos barcos, que son 5, en la tabla" do
 		@game.changeTurn()
 		@game.placeShip('A',5)
 		@game.placeShip('A',4)
@@ -87,7 +88,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "Como es el principio del juego nos devolvera true porque es el turno del j1. Si cambiamos de turno al j2 nos regresara false" do
+	it "Al principio del juego nos validara como positivo cuando sea el turno del j1. y como negativo cuando sea el turno del j2" do
 		resultado = @game.turnPlayer1?()
 		expect(resultado).to match true
 
@@ -96,7 +97,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "Como jugador 1 coloco un barco en la posicion (A,1) y luego le toca a mi oponente que ataca la misma posicion, me deveria devolver mi tablero en esa posicion X(ataque acertado)" do
+	it "Como jugador 1 coloco un barco en una posicion dada, luego le toca a mi oponente atacar a la misma posicion que puse mi barco y me deveria validar en mi tablero, en esa posicion, el ataque acertado (X)" do
 		@game.placeShip('A',1)
 		@game.changeTurn()
 		@game.AttackOpponent('A',1)
@@ -104,7 +105,7 @@ describe Game do
 		expect(resultado).to match "X"
 	end
 
-	it "Como jugador 1 coloco mi barco en la posicion (A,1) y luego le toca a mi oponente que ataca dos veces en el mismo lugar y me deveria devolver false ya que es un error atacar dos veces en el mismo lugar" do
+	it "Deberia validar como negativo cuando un jugador ataca 2 veces en el mismo lugar, lo que seria un error" do
 		@game.placeShip('A',1)
 		@game.changeTurn()
 		@game.AttackOpponent('A',1)
@@ -112,7 +113,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "deberia regresar nobody, nadie gano aun, proque ambos jugadores les quedan un barco" do	
+	it "Deberia regresar nobody (nadie gano aun) cuando a ambos jugadores les quedan por lo menos un barco sin undir en sus tableros" do	
 		@game.placeShip('A',1)
 		@game.changeTurn()
 		@game.placeShip('B',1)
@@ -120,7 +121,7 @@ describe Game do
 		expect(resultado).to match "nobody"
 	end
 
-	it "deberia regresar Player 1 Wins! porque en el tablero del judaro 1 aun hay barcos y ya no hay ninguna donde el jugador 2" do
+	it "Deberia regresar que el jugador 1 ha ganado cuando en su tablero aun hay barcos sin undir y el jugador 2 tiene todos sus barcos hundidos" do
 		@game.placeShip('A',1)
 		resultado = @game.whoWins?()
 		expect(resultado).to match "Jugador 1 gana!"
