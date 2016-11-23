@@ -34,7 +34,7 @@ describe Game do
 		expect(resultado).to match "j1"
 	end
 
-	it "Deberia devolver siempre j1 en cualquier caso que se resete los turnos" do
+	it "Deberia devolver siempre j1 en cualquier caso que se resetee los turnos" do
 		@game.changeTurn()
 		@game.resetTurn()
 		resultado = @game.returnTurn()
@@ -97,7 +97,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "Como jugador 1 coloco un barco en una posicion dada, luego le toca a mi oponente atacar a la misma posicion que puse mi barco y me deveria validar en mi tablero, en esa posicion, el ataque acertado (X)" do
+	it "Como jugador 1 tengo un barco en una posicion dada de mi tabla, y cuando mi oponente ataca a la misma posicion que la de mi barco, me deberia validar en mi tablero, en esa posicion, el ataque acertado (X)" do
 		@game.placeShip('A',1)
 		@game.changeTurn()
 		@game.AttackOpponent('A',1)
@@ -113,7 +113,7 @@ describe Game do
 		expect(resultado).to match false
 	end
 
-	it "Deberia regresar nobody (nadie gano aun) cuando a ambos jugadores les quedan por lo menos un barco sin undir en sus tableros" do	
+	it "Deberia regresar nobody (nadie gano aun) cuando a ambos jugadores les quedan por lo menos un barco sin hundir en sus tableros" do	
 		@game.placeShip('A',1)
 		@game.changeTurn()
 		@game.placeShip('B',1)
@@ -121,7 +121,7 @@ describe Game do
 		expect(resultado).to match "nobody"
 	end
 
-	it "Deberia regresar que el jugador 1 ha ganado cuando en su tablero aun hay barcos sin undir y el jugador 2 tiene todos sus barcos hundidos" do
+	it "Deberia regresar que el jugador 1 ha ganado cuando en su tablero aun hay barcos sin hundir y el jugador 2 tiene todos sus barcos hundidos" do
 		@game.placeShip('A',1)
 		resultado = @game.whoWins?()
 		expect(resultado).to match "Jugador 1 gana!"
