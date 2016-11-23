@@ -24,6 +24,19 @@
 	<div class="ui basic padded segment">
 		<a class="ui orange right floated inverted button"> Salir </a>	
 		<h1 class="ui blue centered  header">Batalla Naval - Fase de ataque</h1>
+		<div class="ui red centered header">
+  				Turno:
+  				<%if settings.game.returnTurn() == "j1" %>	
+  					Jugador 1
+  				<%else%>
+  					Jugador 2
+  				<%end%>
+  		</div>
+		<h1 class="ui red centered  header">
+			<%if @warningAttack==false%>
+				Error al atacar barco, vuelve a intentar
+			<%end%>
+		</h1>
 							
 	</div>
 
@@ -33,7 +46,7 @@
 	<div class="ui grid">	  
 
   		<div class="eight wide column">
-  			<h3 class="ui purple centered header">Posiciones Atacadas</h1>
+  			<h3 class="ui purple centered header">Tablero jugador 1</h1>
   			<table class="ui celled definition red table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
@@ -68,7 +81,7 @@
 
 	  	</div>
 	  	<div class="eight wide column">
-  			<h3 class="ui purple centered header">Ataques Recibidos</h1>
+  			<h3 class="ui purple centered header">Tablero jugador 2</h1>
   			<table class="ui celled definition red table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>

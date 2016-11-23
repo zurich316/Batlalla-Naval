@@ -24,15 +24,29 @@
 	<div class="ui basic padded segment">
 		<h1 class="ui blue centered  header">Batalla Naval</h1>
 	</div>
-	<%if @verificar==false%>
-		<B>Error al ingresar barco, vuelve a intentar</B>
+	<%if @warning==false%>
+	<div class="ui red centered header"><B>Error al ingresar barco, vuelve a intentar</B></div>	
 	<%end%>
 	<% indexed_rows = ["A","B","C","D","E","F","G","H","I","J"] %>
 	<% nroletra = 0 %>
 	<div class="ui grid">	  
 
   		<div class="sixteen wide column">
-  			<h3 class="ui teal centered header">Tus Barcos</h1>
+  			<div class="ui red centered header">
+  				Turno:
+  				<%if settings.game.returnTurn() == "j1" %>	
+  					Jugador 1
+  				<%else%>
+  					Jugador 2
+  				<%end%>
+  			</div>
+  			<h3 class="ui teal centered header">Tus Barcos restantes =
+  				<%if settings.game.returnTurn() == "j1" %>	
+  					<%=settings.game.getShipPlayer1()%>
+  				<%else%>
+  					<%=settings.game.getShipPlayer2()%>
+  				<%end%>
+  			</h1>
   			<table class="ui  celled definition blue table" style="width:70%; margin-left:15%; table-layout: fixed;">
 			 	<thead>
 			 		<tr>
@@ -43,7 +57,7 @@
 					</tr>
 				</thead>
 				<tbody>	
-				<%if settings.game.retornarTurno() == "j1" %>	
+				<%if settings.game.returnTurn() == "j1" %>	
 				<% settings.game.getBoard1().each do |elem| %>
 					  <tr>
 				    	<td class="center aligned"><%= indexed_rows[nroletra] %></td> 	  

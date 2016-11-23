@@ -20,9 +20,7 @@ describe Player do
 		expect(resultado).to match 5
 	end 
 
-
-
-	it "Devolver el numero de la fila dada una letra de la A a la J" do
+	it "Devolver el numero de la fila dada una letra de la A que incia con 0 a la J que termina con 9" do
 		resultado = @player.returnRow('A')
 		expect(resultado).to match 0
 		resultado = @player.returnRow('C')
@@ -33,18 +31,18 @@ describe Player do
 		expect(resultado).to match 9
 	end
 
-	it "Deberia devolver el elemento en una posicion de la matriz" do
+	it "Deberia devolver A(agua) porque el tablero incia ccon agua en todos sus campos " do
 		resultado = @player.returnElementFromBoard(5,5)
 		expect(resultado).to match "A"
 	end
 
-	it "Deberia guardar el elemento en una posicion" do
+	it "Deberia regresarnos X el elemento que posicionamos en el espacio (0,0)" do
 		@player.placeElementInTheBoard(0,0,"X")
 		resultado = @player.returnElementFromBoard(0,0)
 		expect(resultado).to match "X"
 	end
 
-	it "Despues de colocar una pieza en el primer cuadrante me deberia " do
+	it "deveria devolver true ya que el tablero esta vacio, pero si le ponemos algun elemento este nos devuelve false" do
 		resultado =  @player.BoardEmpty?()
 		expect(resultado).to match true
 
@@ -53,9 +51,9 @@ describe Player do
 		expect(resultado).to match false
 	end
 
-	it "Debe verificar si el tablero se  limpio" do
+	it "Deveria devolver true ya que despues de colocar un elemento en el tablero lo limpiamoz y todo se convierte en agua(A)" do
 		@player.placeElementInTheBoard(0,0,"X")
-		@player.cleanBoard()
+		@player.resetBoard()
 		resultado =  @player.BoardEmpty?()
 		expect(resultado).to match true
 	end
@@ -79,7 +77,7 @@ describe Player do
 
 	it "Despues de colocar los 1 barco y de resetear el numero de barcos del jugador deberia devolver 5" do
 		@player.placeShip('A',1)
-		@player.cleanShips()
+		@player.resetShips()
 		resultado = @player.getShips()
 		expect(resultado).to match 5
 	end
@@ -101,13 +99,13 @@ describe Player do
 		expect(resultado).to match false
 	end
 
-	it "Deberia retornar true si hay barcos en el tablero" do
+	it "Deberia retornar true ya que pusimos un barco en la posicion (E,9) y el tablero tiene un barco" do
 		@player.placeShip("E",9)
 		resultado = @player.isThereShipsInTheBoard?()
 		expect(resultado).to match true
 	end
 
-	it "Deberia devolver el resultado si un ataque es acertado" do
+	it "Deberia devolver X(ataque acertado) ya el ataque cae en un barco, previamente colocado, en la posicion (A,1)" do
 		@player.placeShip("A",1)
 		@player.Attack!('A',1)
 		resultado = @player.returnElementFromBoard(0,0)
@@ -115,14 +113,13 @@ describe Player do
 
 	end
 
-	it "Deberia devolver el resultado si un ataque no es acertado" do
-		@player.placeShip("A",0)
+	it "Deberia devolver F(Ataque fallido) porque mandamos un ataque a la posicion (A,1) que es A(agua) " do
 		@player.Attack!('A',1)
 		resultado = @player.returnElementFromBoard(0,0)
 		expect(resultado).to match "F"
 	end
 
-	it "Debe verificar si el ataque se ejecuto en el mismo lugar" do
+	it "Deberia devolver false ya que un ataque se realizo dos veces en la posicion (A,1), pero luego devuele true cuando se desea atacar en la posicion (A,2)" do
 		@player.Attack!('A',1)
 		resultado = @player.checkAttack('A',1)
 		expect(resultado).to match false
@@ -176,7 +173,7 @@ describe Player do
 
 
 	it "Poner un barco de tamaño N en una fila N y columa M de forma  vertical" do
-		@tb.cleanMatriz()
+		@tb.resetMatriz()
 		@tb.posicionarBarco(3,"v",'B',3)
 		resultado = @tb.getBoard()
 		resultado = resultado.map {|row| row[2]}.drop(1).take(3).join(',')

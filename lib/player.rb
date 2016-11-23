@@ -4,11 +4,11 @@ class	Player
 	   @ships = 5
   	end
 
-  	def cleanBoard()
+  	def resetBoard()
 		return @board = Array.new(10){Array.new(10){'A'}}
 	end
 
-  	def cleanShips()
+  	def resetShips()
 		@ships = 5
 	end
 

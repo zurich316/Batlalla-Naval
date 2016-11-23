@@ -1,5 +1,4 @@
 require 'sinatra'
-require_relative "lib/board.rb"
 require_relative "lib/game.rb"
 require_relative "lib/player.rb"
 
@@ -8,9 +7,14 @@ require_relative "lib/player.rb"
   set :game, game
 
   get '/' do
-   # game.limpiarTablero()
-    #game.regresarBarcos()
+    game.resetPlayer1()
+    game.resetPlayer2()
+    game.resetTurn()
     erb :main
+  end
+
+  get '/wait' do
+    erb :wait
   end
  
   get '/table' do      
@@ -20,31 +24,49 @@ require_relative "lib/player.rb"
   post '/table' do
     @row = params[:row]
     @colum = params[:colum].to_i
-    game.ponerBarco(@row,@colum) 
-    if(game.hayBarcosEnjugador1() == false && game.retornarTurno() == "j1")
-      game.camnbiarTurno()
-    end  
-
-    if(game.hayBarcosEnjugador2() == false)
-      erb :attack
+    @warning = game.checkPlaceShip(@row,@colum)
+    game.placeShip(@row,@colum) 
+    if(game.areTherShipsInPlayer1?() == false && game.turnPlayer1?)
+      game.changeTurn()
+      erb :wait
     else
-      erb :table
-    end    
+      if(game.areTherShipsInPlayer2?() == false && game.turnPlayer1? == false)
+        game.changeTurn()
+        erb :waitAttack
+      else
+        erb :table
+      end   
+    end  
     
   end
 
   get '/attack' do
     erb :attack
   end
-=begin
+
+  get '/waitAttack' do
+    erb :waitAttack
+  end
+
+  get '/attack' do
+    erb :attack
+  end
+
   post '/attack' do
     @row = params[:row]
     @colum = params[:colum].to_i
-    game.hacerAtaque(@row,@colum)
-    if game.endGame()
-      erb :end
-    else
-      erb :attack
+    @warningAttack = game.checkAttack(@row,@colum)
+    if(@warningAttack)
+      game.AttackOpponent(@row,@colum)
+      game.changeTurn()
     end
+
+    if(game.whoWins?() == "nobody")
+      erb :waitAttack
+    else
+       erb :end
+    end
+
+   
   end
-=end
+

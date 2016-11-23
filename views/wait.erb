@@ -14,23 +14,24 @@
 <head>
 <body>
 	<div class="ui basic segment">
-		<h1 class="ui blue centered header" >
-		  Fin del Juego
-		</h1>	
-		<h1 class="ui black centered header" >
-		  <%=settings.game.whoWins?()%>
+		<h1 class="ui teal centered header" >
+		 	Fase para colocar barcos
 		</h1>
-		
-		<h2 class="ui teal centered header" >		 
-		  Gracias por Jugar!
-		</h2>				 
+		<h1 class="ui blue centered header" >
+		 <%if settings.game.returnTurn() == "j1" %>	
+  			Turno para el jugador 1
+  		<%else%>
+  			Turno para el jugador 2
+  		<%end%>
+		</h1>	
+						 
 	</div>	
 	<div class="ui center aligned basic segment">
-		<img class="ui centered image" src="/images/fin.jpg" height="500px" widht="300px">
+	
 		<div class="ui center aligned basic segment">
 			
-			<!--<a class="ui green center floated inverted button" href="/table"> Volver a Jugar </a> </br></br>-->
-			<a class="ui yellow inverted button" href="/"> Ir al Inicio </a>
+			<a class="ui green center floated inverted button" href="/table"> Seguir </a> </br></br>
+			
 			
 		</div>
 	</div>	
