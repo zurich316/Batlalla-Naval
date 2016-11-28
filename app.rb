@@ -45,7 +45,7 @@ require_relative "lib/player.rb"
   end
 
   post '/setshipsquantity' do
-    @shipsquantity = params[:shipsquantity]
+    @shipsquantity = params[:shipsquantity].to_i
     game.setShipsQuantity(@shipsquantity)
     erb :wait
   end

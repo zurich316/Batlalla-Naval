@@ -12,9 +12,8 @@ class	Player
 		@ships = 5
 	end
 
-	def setShips(cantbarcos)		
-		@ships = cantbarcos
-		
+	def setShips(cantShips)		
+		@ships = cantShips	
 	end
 
 	def areThereShips?()
@@ -52,7 +51,7 @@ class	Player
 			row = returnRow(row)
 			colum=colum-1
 			placeElementInTheBoard(row,colum,'B')	
-			@ships = @ships - 1
+			@ships=@ships-1
 		end
 	end
 
