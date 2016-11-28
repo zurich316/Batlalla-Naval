@@ -129,6 +129,12 @@ describe Player do
 
 	end
 
+	it "Deberia establecer la cantidad de barcos para poner segun la cantidad ingresada" do
+		@player.setShips(10)
+		resultado = @player.getShips()
+		expect(resultado).to match 10
+	end
+
 =begin
 	it "Devuelve un array del array y debe ser igual a en 10" do
 		resultado = @player.getBoard()

@@ -126,6 +126,15 @@ describe Game do
 		resultado = @game.whoWins?()
 		expect(resultado).to match "Jugador 1 gana!"
 	end
+
+	it "Deberia establecer la cantidad de barcos a poner segun la cantidad ingresada para cada jugador" do
+		@game.setShipsQuantity(10)
+		resultado = @game.getShipPlayer1()
+		expect(resultado).to match 10
+
+		resultado = @game.getShipPlayer2()
+		expect(resultado).to match 10		
+	end
 =begin
 	it "deberia regresar true ya que ninguno de los jugadores tiene barcos en sus tableros" do
 		resultado = @game.someoneLose?()

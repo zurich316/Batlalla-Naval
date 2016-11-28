@@ -13,6 +13,11 @@ class Game
 		return @player2.getBoard()
 	end
 
+	def setShipsQuantity(quantity)
+		@player1.setShips(quantity)
+		@player2.setShips(quantity)
+	end
+
 	def getShipPlayer1()
 		return @player1.getShips()
 	end

@@ -40,6 +40,16 @@ require_relative "lib/player.rb"
     
   end
 
+  get '/setshipsquantity' do
+    erb :setshipsquantity
+  end
+
+  post '/setshipsquantity' do
+    @shipsquantity = params[:shipsquantity]
+    game.setShipsQuantity(@shipsquantity)
+    erb :wait
+  end
+
   get '/attack' do
     erb :attack
   end
