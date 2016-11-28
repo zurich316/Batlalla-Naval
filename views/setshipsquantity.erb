@@ -19,7 +19,7 @@
 	<form class="ui form" method='post' action="/setshipsquantity">
 		<div class="five fields">
 			<div class="field" style="margin-left:40%;">
-				<label>Fila: </label>
+				<label>Cantidad: </label>
 				<select name="shipsquantity" >
 				  <% [*'1'..'20'].each do |shipsquantity| %>
 				    <option value=<%= shipsquantity %>><%= shipsquantity %></option>
